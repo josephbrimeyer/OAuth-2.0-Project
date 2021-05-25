@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 
 app.get(
   "/auth/facebook",
-  passport.authenticate("facebook", { scope: "email" })
+  passport.authenticate("facebook", { scope: "email, user_photos" })
 );
 
 app.get(
@@ -69,7 +69,7 @@ app.get("/failed", (req, res) => {
 });
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id);
+  return done(null, user.id);
 });
 passport.deserializeUser(function (id, done) {
   return done(null, id);
